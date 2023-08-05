@@ -1,0 +1,38 @@
+name: Backend - Develop - Publish snapshot on push
+
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  java-version: 17
+  distribution: 'graalvm'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout [${{ github.head_ref || github.ref_name }}]
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          distribution: ${{ env.distribution }}
+          java-version: ${{ env.java-version }}
+          components: 'native-image'
+          cache: 'maven'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Image
+        run: >
+          mvn -B deploy -DskipTests
+          -Dquarkus.container-image.build=true
+          -Dquarkus.container-image.tag=latest
+          -Dquarkus.container-image.push=true
+          -Dquarkus.container-image.registry=ghcr.io
+          -Dquarkus.container-image.username=${{ github.actor }}
+          -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
