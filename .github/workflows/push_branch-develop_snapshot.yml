@@ -29,7 +29,7 @@ jobs:
 
       - name: Build Image
         run: >
-          mvn -B deploy -DskipTests
+          mvn -B package -DskipTests
           -Dquarkus.container-image.build=false
           -Dquarkus.container-image.tag=latest
           -Dquarkus.container-image.push=false
