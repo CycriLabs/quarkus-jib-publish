@@ -30,9 +30,9 @@ jobs:
       - name: Build Image
         run: >
           mvn -B deploy -DskipTests
-          -Dquarkus.container-image.build=true
+          -Dquarkus.container-image.build=false
           -Dquarkus.container-image.tag=latest
-          -Dquarkus.container-image.push=true
+          -Dquarkus.container-image.push=false
           -Dquarkus.container-image.registry=ghcr.io
           -Dquarkus.container-image.username=${{ github.actor }}
           -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
