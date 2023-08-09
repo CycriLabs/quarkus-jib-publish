@@ -12,9 +12,6 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - name: Checkout [${{ github.head_ref || github.ref_name }}]
         uses: actions/checkout@v3
@@ -30,9 +27,12 @@ jobs:
           cache: 'maven'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Adapt maven settings
+        uses: s4u/maven-settings-action@v2
+
       - name: Build Image
         run: >
-          mvn -B deploy -Pgithub -DskipTests
+          mvn -B deploy -DskipTests
           -Dquarkus.container-image.build=false
           -Dquarkus.container-image.tag=latest
           -Dquarkus.container-image.push=false
@@ -40,4 +40,4 @@ jobs:
           -Dquarkus.container-image.username=${{ github.actor }}
           -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
         env:
-          github-token: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
