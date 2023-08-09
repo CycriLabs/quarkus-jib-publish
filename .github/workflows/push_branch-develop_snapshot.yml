@@ -12,6 +12,9 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout [${{ github.head_ref || github.ref_name }}]
         uses: actions/checkout@v3
