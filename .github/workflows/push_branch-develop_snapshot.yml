@@ -33,7 +33,7 @@ jobs:
       - name: Adapt maven settings
         uses: s4u/maven-settings-action@v2
         with:
-          servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}"}]'
+          servers: '[{"id": "github", "username": "dummy", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
           githubServer: false
 
       - name: Build Image
@@ -41,7 +41,9 @@ jobs:
           mvn -B deploy -DskipTests
           -Dquarkus.container-image.build=true
           -Dquarkus.container-image.tag=latest
-          -Dquarkus.container-image.push=true
+          -Dquarkus.container-image.push=false
           -Dquarkus.container-image.registry=ghcr.io
           -Dquarkus.container-image.username=${{ github.actor }}
-          -Dquarkus.container-image.password=${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+          -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
