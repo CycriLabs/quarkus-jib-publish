@@ -41,4 +41,4 @@ jobs:
           -Dquarkus.container-image.push=true
           -Dquarkus.container-image.registry=ghcr.io
           -Dquarkus.container-image.username=${{ github.actor }}
-          -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
+          -Dquarkus.container-image.password=${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
