@@ -40,5 +40,6 @@ jobs:
           -Dquarkus.container-image.tag=latest
           -Dquarkus.container-image.push=true
           -Dquarkus.container-image.registry=ghcr.io
+          -Dquarkus.container-image.group=cycrilabs
           -Dquarkus.container-image.username=${{ github.actor }}
           -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
