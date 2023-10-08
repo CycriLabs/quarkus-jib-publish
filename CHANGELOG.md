@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/CycriLabs/quarkus-jib-publish/compare/1.0.0...1.1.0) (2023-10-08)
+
+
+### Features
+
+* adapt container image group ([1b83d61](https://github.com/CycriLabs/quarkus-jib-publish/commit/1b83d61a6d4d63b8c5f7c545bd966ec9025190a1))
+
 # 1.0.0 (2023-10-08)
 
 
