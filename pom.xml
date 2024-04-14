@@ -31,7 +31,7 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Dependency versions -->
-        <quarkus.platform.version>3.4.2</quarkus.platform.version>
+        <quarkus.platform.version>3.9.3</quarkus.platform.version>
         <!-- Dependency versions -->
 
         <!-- Plugin versions -->
