@@ -6,7 +6,7 @@ on:
       - develop
 
 env:
-  java-version: 17
+  java-version: 21
   distribution: 'graalvm'
 
 jobs:
