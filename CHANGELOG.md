@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/CycriLabs/quarkus-jib-publish/compare/1.2.0...1.2.1) (2024-10-20)
+
+
+### Bug Fixes
+
+* load full history for multiple tags ([097640b](https://github.com/CycriLabs/quarkus-jib-publish/commit/097640b417d7e3d040b8abcd25946852c4cdb0ba))
+
 # [1.2.0](https://github.com/CycriLabs/quarkus-jib-publish/compare/1.1.0...1.2.0) (2024-10-20)
 
 
