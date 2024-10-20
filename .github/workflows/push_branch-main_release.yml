@@ -86,6 +86,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
+          fetch-depth: 0 # required to get all history for git describe
 
       - name: Setup GraalVM
         uses: graalvm/setup-graalvm@v1
