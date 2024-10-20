@@ -18,6 +18,8 @@ env:
   node-js-version: 20.x
   author-name: Marc Scheib
   author-email: marc.scheib@cycrilabs.com
+  publish-artifacts: false
+  build-native-image: false
 
 jobs:
   test:
@@ -105,11 +107,23 @@ jobs:
           echo "TAG_MAJOR=$(git describe --abbrev=0 --tags | cut -d. -f1)" >> $GITHUB_OUTPUT
         id: version
 
-      - name: Deploy project & image
+      - name: Deploy project & native image
+        if: ${{ env.build-native-image == 'true' }}
         run: >
           mvn -B deploy -DskipTests
           -Dquarkus.container-image.build=true
           -Dquarkus.native.container-build=true -Dnative
+          -Dquarkus.container-image.additional-tags=${{ steps.version.outputs.TAG_MAJOR_MINOR }},${{ steps.version.outputs.TAG_MAJOR }}
+          -Dquarkus.container-image.push=true
+          -Dquarkus.container-image.registry=ghcr.io
+          -Dquarkus.container-image.username=${{ github.actor }}
+          -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy project & image
+        if: ${{ env.build-native-image == 'false' }}
+        run: >
+          mvn -B deploy -DskipTests
+          -Dquarkus.container-image.build=true
           -Dquarkus.container-image.additional-tags=${{ steps.version.outputs.TAG_MAJOR_MINOR }},${{ steps.version.outputs.TAG_MAJOR }}
           -Dquarkus.container-image.push=true
           -Dquarkus.container-image.registry=ghcr.io
