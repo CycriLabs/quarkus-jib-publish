@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/CycriLabs/quarkus-jib-publish/compare/1.2.1...1.3.0) (2024-10-20)
+
+
+### Features
+
+* bump node action to v4 ([4f87630](https://github.com/CycriLabs/quarkus-jib-publish/commit/4f87630cd2b07a458842af23ab552c853168f83b))
+
 ## [1.2.1](https://github.com/CycriLabs/quarkus-jib-publish/compare/1.2.0...1.2.1) (2024-10-20)
 
 
